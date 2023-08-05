@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "./components/Modal";
 import Btn from "./components/Tugma";
 import Card from "./components/Card";
-import { data } from './utils/data';
+import { data } from "./utils/data";
 
 const App = () => {
   const [todo, setTodo] = useState([]);
@@ -44,9 +44,10 @@ const App = () => {
     toast.info("deleted successfully");
   };
 
-
   const [addData, setData] = useState(false);
-  const [dataMD, setDataMd] = useState(data);
+  const [dataMD, setDataMd] = useState([]);
+
+  const [add, addMD] = useState([]);
   return (
     <>
       {addData === true && (
@@ -96,12 +97,18 @@ const App = () => {
           </div>
         </div>
         <div className="card w-[800px] mx-auto mt-[100px] p-2 relative bg-slate-300 rounded-lg">
-          <h1 className="font-semibold text-2xl text-center py-5 text-[#23365e] ">
-            This card empty
-          </h1>
-          {dataMD?.map((e, index) => (
-            <Card key={index} {...e} />
-          ))}
+          <Card dataMD={dataMD}/>
+          {/* {dataMD.map((item, index) => {
+            return <Card state={item} index={index} key={item.id} />;
+          })} */}
+          {/* {dataMD?.length ? (
+            
+          ) : (
+            <h1 className="font-semibold text-2xl text-center py-5 text-[#23365e] ">
+              This card empty
+            </h1>
+          )} */}
+
           <Btn setData={setData} />
         </div>
       </div>

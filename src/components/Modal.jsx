@@ -6,24 +6,32 @@ const Modal = ({ setData, setDataMd, dataMD }) => {
     e.preventDefault();
     const [input_name, input_surname, input_roomnm, input_number, input_price] =
       e.target.querySelectorAll("input");
-    console.log({
-      IName: input_name.value,
-      ISurname: input_surname.value,
-      INumber: input_number.value,
-      IPrice: input_price.value,
-      IRoomn: input_roomnm.value,
-    });
 
-    const newData = dataMD.unshift({
-      id: dataMD.length + 1,
+    const newData = {
+      id: Date.now(),
       _Name: input_name.value,
       _Surname: input_surname.value,
       _Number: input_number.value,
       _Price: input_price.value,
       _Room: input_roomnm.value,
-    });
+    };
 
-    setDataMd(newData);
+    if (
+      newData._Name.trim().length &&
+      newData._Surname.trim().length &&
+      newData._Number.trim().length &&
+      newData._Price.trim().length &&
+      newData._Room.trim().length
+    ) {
+      setDataMd(newData);
+      input_name.value = "";
+      input_surname.value = "";
+      input_number.value = "";
+      input_price.value = "";
+      input_roomnm.value = "";
+    } else {
+      alert("Please enter a titles");
+    }
   };
 
   return (
